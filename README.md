@@ -36,3 +36,32 @@ console.log(styleme.style("some text","red,bbl")) // red text with blue backroun
 ```
 console.log("This is normal red{this is red blu{this is blue} back to red}".styleMe())
 ```
+
+### Color Codes
+All of these methods use color codes. They have 3 letters.
+
+|   Color   |Code|
+|:----------|:--:|
+|Reset      |res |
+|Bright     |bri |
+|Dim        |dim |
+|Underline  |und |
+|Blink      |bli |
+|Reverse    |rev |
+|Hide       |hid |
+|Black      |bla |
+|Red        |red |
+|Green      |gre |
+|Yellow     |yel |
+|Blue       |blu |
+|Magenta    |mag |
+|Cyan       |cya |
+|White      |whi |
+|bgBlack    |bbl |
+|bgRed      |bre |
+|bgGreen    |bgr |
+|bgYellow   |bye |
+|bgMagenta  |bma |
+|bgCyan     |bcy |
+|bgWhite    |bwh |
+
