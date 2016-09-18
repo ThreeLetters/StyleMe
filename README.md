@@ -34,5 +34,5 @@ console.log(styleme.style("some text","red,bbl")) // red text with blue backroun
 #### Method 4. The really cool way
 
 ```
-console.log("This is normal red{this is red blu{this is blue}back to red}".styleMe())
+console.log("This is normal red{this is red blu{this is blue} back to red}".styleMe())
 ```
