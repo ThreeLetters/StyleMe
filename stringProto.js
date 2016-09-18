@@ -21,6 +21,11 @@ function check(a) {
    
     return g;
 }
+for (var i in list) {
+  var a = list[i];
+    if (!a) continue;
+  eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\";}")
+}
 String.prototype.styleMe = function() {
 var t = 0;
     var k = []
