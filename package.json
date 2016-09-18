@@ -1,0 +1,23 @@
+{
+  "name": "styleme",
+  "version": "2.0.0",
+  "description": "Print to the console in style",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AJS-development/StyleMe/tree/master"
+  },
+  "keywords": [
+    "style",
+    "color",
+    "fonts",
+    "backround"
+  ],
+  "author": {
+    "name": "andrews54757"
+  },
+  "license": "Apache-2.0"
+}
