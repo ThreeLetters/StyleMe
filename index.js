@@ -2,7 +2,6 @@ var styleme = require('./styleme')
 
 module.exports = {
   style: styleme,
-  tool: tool,
   res: function(a) {return "\x1b[0m" + a},
   bri: function(a) {return "\x1b[1m" + a},
   dim: function(a) {return "\x1b[2m" + a},
