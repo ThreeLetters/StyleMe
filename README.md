@@ -65,3 +65,7 @@ All of these methods use color codes. They have 3 letters.
 |bgCyan     |bcy |
 |bgWhite    |bwh |
 
+
+### Adding Colors
+
+You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|"
