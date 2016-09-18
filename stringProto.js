@@ -13,7 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function(list) {
+module.exports = function() {
+  var list = JSON.parse(fs.readFileSync('./styles.json',"utf8"))
 function check(a) {
     if (!list[a]) return false
     
