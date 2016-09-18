@@ -14,7 +14,7 @@
    limitations under the License.
    */
 module.exports = function() {
-  var list = JSON.parse(fs.readFileSync('./styles.json',"utf8"))
+  var list = JSON.parse(require('fs').readFileSync('./styles.json',"utf8"))
 function check(a) {
     if (!list[a]) return false
     
