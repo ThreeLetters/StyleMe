@@ -27,6 +27,9 @@ for (var i in list) {
     if (!a) continue;
   eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\" + this;}")
 }
+String.prototype.end = function() {
+  return this + "\x1b[0m";
+}
 String.prototype.styleMe = function() {
 var t = 0;
     var k = []
