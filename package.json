@@ -1,6 +1,6 @@
 {
   "name": "styleme",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "Print to the console in style",
   "main": "index.js",
   "scripts": {
