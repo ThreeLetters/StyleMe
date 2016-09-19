@@ -1,3 +1,5 @@
+[![NPM] (https://img.shields.io/badge/module-npm-blue.svg)] (https://www.npmjs.com/package/styleme)
+[![Donate] (https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)] (paypal.me/andrews54757)
 # StyleMe
 Print to the console in style.
 
