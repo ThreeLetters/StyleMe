@@ -1,7 +1,8 @@
 var styleme = require('./styleme')
-
+var extend = require('./stringProto')
 module.exports = {
   style: styleme,
+  extend: extend,
   res: function(a) {return "\x1b[0m" + a},
   bri: function(a) {return "\x1b[1m" + a},
   dim: function(a) {return "\x1b[2m" + a},
