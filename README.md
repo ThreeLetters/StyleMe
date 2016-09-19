@@ -10,6 +10,12 @@ Print to the console in style.
 ``var styleme = require('styleme')``
 
 
+To use methods 2 and 4 also do
+
+
+``styleme.extend()``
+
+
 There are four methods to use this module
 
 
