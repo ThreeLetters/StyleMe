@@ -25,12 +25,13 @@ There are four methods to use this module
 ```
 console.log(styleme.red("a string"))
 console.log(styleme.blu("another string"))
+console.log(styleme.end());
 ```
 
 #### Method 2. The "Normal" way
 
 ```
-console.log("Hello, this is yellow text".yellow()) // note that we dont use Object.__defineGetter__ which is deprecated unlike the popular colors module.
+console.log("Hello, this is yellow text".yellow().end()) // note that we dont use Object.__defineGetter__ which is deprecated unlike the popular colors module. Also note putting a .end() at the end to reset
 ```
 
 #### Method 3. The nifty way
