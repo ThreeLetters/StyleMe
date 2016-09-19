@@ -25,7 +25,7 @@ function check(a) {
 for (var i in list) {
   var a = list[i];
     if (!a) continue;
-  eval("String.prototype." + i + "=function(){return this + \"" + a.replace(/\|/g,"\\") +"\";}")
+  eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\" + this;}")
 }
 String.prototype.styleMe = function() {
 var t = 0;
