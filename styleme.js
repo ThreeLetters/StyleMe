@@ -10,7 +10,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-var avail = JSON.parse(require('fs').readFileSync('./styles.json',"utf8"))
+var avail = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
 module.exports = function(str,style) {
   if (!style) throw "Style not specified";
   var styles = style.split(",")
