@@ -24,5 +24,6 @@ module.exports = {
   bye: function(a) {return "\x1b[43m" + a},
   bma: function(a) {return "\x1b[45m" + a},
   bcy: function(a) {return "\x1b[46m" + a},
-  bwh: function(a) {return "\x1b[47m" + a}
+  bwh: function(a) {return "\x1b[47m" + a},
+  end: function(a) {return a + "\x1b[0m"}
 }
