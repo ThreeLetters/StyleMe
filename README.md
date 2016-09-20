@@ -107,3 +107,6 @@ switch(index%2) { // Black and white inverse pattern
 }
 }
 ```
+
+
+Please note that you cannot use `colors[index]`. You must use `colors.colorcode` instead
