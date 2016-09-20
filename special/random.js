@@ -1,13 +1,13 @@
 module.exports = function(a,i,colors) {
 var color = {
-  red: colors.red,
-  gre: colors.gre,
-  blu: colors.blu,
-  yel: colors.yel,
-  mag: colors.mag,
-  whi: colors.whi,
-  cya: colors.cya
-}
-
+  colors.red,
+  colors.gre,
+  colors.blu,
+  colors.yel,
+  colors.mag,
+  colors.whi,
+  colors.cya
+]
+return color[Math.floor(Math.random() * 6)] + a
 
 }
