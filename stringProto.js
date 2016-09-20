@@ -18,6 +18,7 @@
   var colors = {};
   for (var i in list)
   {
+    
     eval("colors." + i + " = \"" + list[i].replace(/\|/g,"\\") + "\"")
     
   }
@@ -38,8 +39,14 @@ function check(a) {
 }
 
 for (var i in special) {
-  var a = special[i];
-  eval("String.prototype." + i + "=function() {var final = "";for (var i = 0; i < this.length; i ++) {}}")
+  var a = special[i].toString();
+  var b = a.indexOf("(")
+  a = a.substring(b);
+  var c = a.substring(0,a.indexOf(")")).split(",")[2];
+  for (var i in colors) {
+a = a.replace(new RegExp("/" + c + "\\." + i + "/g"),"\"" + colors[i] + "\"");
+  }
+  eval("String.prototype." + i + "=function() {function cur(" + a +"var final = "";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i)}return final;}")
 }
 for (var i in list) {
   var a = list[i];
