@@ -10,7 +10,9 @@ var send = {};
     
   }
 var functions = {
-  style: styleme,
+  style: function(a,b) {
+    return styleme(a,b,colors)
+  },
   extend: function() {
     return extend(send,colors)
     
