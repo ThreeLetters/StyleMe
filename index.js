@@ -14,14 +14,30 @@ var functions = {
     return extend(send,colors)
     
   },
-  addThemes: function(theme,callback) {
+  addThemes: function(theme) {
+    if (typeof theme == "string") {
+      theme = require(theme)
+    }
     for (var i in theme) {
       themes[i] = theme[i];
     }
     
-  }
+    update()
+  },
+  addAddOn: function(data) {
+    if (typeof data == "string") {
+      data = JSON.parse(fs.readFileSync(data))
+    }
+    for (var i = 0; i < data.length; i ++) {
+      var a = data[i];
+      
+    }
+  },
   addSpecial: function(name,func) {
     if (name.length > 3) throw "Code cannot be over 3 chars"
+    if (typeof func == "string") {
+      func = require(func);
+    } else
     if (typeof func != "function") throw "Special patterns must be a function";
     special[name] = func;
     update()
