@@ -13,15 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function(spec) {
-  var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
-  var colors = {};
-  for (var i in list)
-  {
-    
-    eval("colors." + i + " = \"" + list[i].replace(/\|/g,"\\") + "\"")
-    
-  }
+module.exports = function(spec,colors) {
+
   
   var special = require('./special/')
   var curr = false;
