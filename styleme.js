@@ -22,7 +22,7 @@ module.exports = function(str,style) {
   })
   final += str + "\x1b[0m"
 
-return str
+return final
 
 
 }
