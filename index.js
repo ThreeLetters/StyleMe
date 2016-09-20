@@ -3,22 +3,38 @@ var extend = require('./stringProto')
 var send = {};
   var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
   var colors = {};
+  
+  var extended = false;
+var functions = {
+  style: function(a,b) {
+    return styleme(a,b,colors)
+  },
+  extend: function() {
+    extended = true;
+    return extend(send,colors)
+    
+  },
+  addSpecial: function(name,func) {
+    if (name.length > 3) throw "Code cannot be over 3 chars"
+    if (typeof func != "function") throw "Special patterns must be a function";
+    special[name] = func;
+    update()
+  },
+  addStyle: function(name,style) {
+    if (name.length > 3) throw "Code cannot be over 3 chars"
+    colors[name] = style
+    update()
+  },
+}
+var special = require('./special/')
+update()
+function update() {
   for (var i in list)
   {
     
     eval("colors." + i + " = \"" + list[i].replace(/\|/g,"\\") + "\"")
     
   }
-var functions = {
-  style: function(a,b) {
-    return styleme(a,b,colors)
-  },
-  extend: function() {
-    return extend(send,colors)
-    
-  },
-}
-var special = require('./special/')
 for (var i in special) {
   var a = special[i].toString();
   var b = a.indexOf("(") + 1
@@ -43,6 +59,8 @@ for (var i in colors) {
     if (!h) continue;
   eval("functions." + i + "=function(a){return \"" + h +"\" + a;}");
   
+}
+  if (extended) extend(send,colors)
 }
 
 module.exports = functions
