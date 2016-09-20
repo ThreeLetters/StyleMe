@@ -1,8 +1,12 @@
 var styleme = require('./styleme')
 var extend = require('./stringProto')
+var send = {};
 var functions = {
   style: styleme,
-  extend: extend,
+  extend: function() {
+    return extend(send)
+    
+  },
 }
 var special = require('./special/')
 for (var i in special) {
@@ -19,8 +23,9 @@ a = a.replace(new RegExp(c + "\\." + i,"g"),"\"" + colors[i] + "\"");
   }
       
   }
-    var g = "functions." + i + " = function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
-  eval(g)
+    var g = i + " = function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
+  eval("functions." + g)
+  eval("send." + g)
 }
 var b = JSON.parse(require('fs').readFileSync(__dirname + "/styles.json"))
 for (var i in b) {
