@@ -10,13 +10,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-var avail = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
-module.exports = function(str,style) {
+module.exports = function(str,style,colors) {
   if (!style) throw "Style not specified";
   var styles = style.split(",")
   var final = "";
   styles.forEach((sty)=>{
-    eval("var a = \"" + sty.replace(/\|/g,"\\") + "\"");
+    eval("var a = \"" + colors[sty] + "\"");
     final += a
     
   })
