@@ -1,29 +1,39 @@
 var styleme = require('./styleme')
 var extend = require('./stringProto')
-module.exports = {
+var send = {};
+var functions = {
   style: styleme,
-  extend: extend,
-  res: function(a) {return "\x1b[0m" + a},
-  bri: function(a) {return "\x1b[1m" + a},
-  dim: function(a) {return "\x1b[2m" + a},
-  und: function(a) {return "\x1b[4m" + a},
-  bli: function(a) {return "\x1b[5m" + a},
-  rev: function(a) {return "\x1b[7m" + a},
-  hid: function(a) {return "\x1b[8m" + a},
-  bla: function(a) {return "\x1b[30m" + a},
-  red: function(a) {return "\x1b[31m" + a},
-  gre: function(a) {return "\x1b[32m" + a},
-  yel: function(a) {return "\x1b[33m" + a},
-  blu: function(a) {return "\x1b[34m" + a},
-  mag: function(a) {return "\x1b[35m" + a},
-  cya: function(a) {return "\x1b[36m" + a},
-  whi: function(a) {return "\x1b[37m" + a},
-  bbl: function(a) {return "\x1b[44m" + a},
-  bre: function(a) {return "\x1b[41m" + a},
-  bgr: function(a) {return "\x1b[42m" + a},
-  bye: function(a) {return "\x1b[43m" + a},
-  bma: function(a) {return "\x1b[45m" + a},
-  bcy: function(a) {return "\x1b[46m" + a},
-  bwh: function(a) {return "\x1b[47m" + a},
-  end: function(a) {return a + "\x1b[0m"}
+  extend: function() {
+    return extend(send)
+    
+  },
 }
+var special = require('./special/')
+var colors = JSON.parse(require('fs').readFileSync(__dirname + "/styles.json"))
+for (var i in special) {
+  var a = special[i].toString();
+  var b = a.indexOf("(") + 1
+  a = a.substring(b);
+  var c = a.substring(0,a.indexOf(")")).split(",");
+    c = c[2]
+    
+  if (c) {
+  for (var k in colors) {
+      if (a.indexOf(c + "." + k) == -1) continue;
+a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k].replace(/\|/g,"\\") + "\"");
+  
+  } 
+  }
+    var g = "function(a) {function cur(" + a +"var final = \"\";for (var i = 0; i < a.length; i ++) { final += cur(a.charAt(i),i);}return final + \"\x1b[0m\"}";
+  eval("functions."+ i + "=" + g)
+  send[i] = g
+}
+var b = colors
+for (var i in b) {
+  var h = b[i];
+    if (!h) continue;
+  eval("functions." + i + "=function(a){return \"" + h.replace(/\|/g,"\\") +"\" + a;}");
+  
+}
+
+module.exports = functions
