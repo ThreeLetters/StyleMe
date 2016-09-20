@@ -23,9 +23,9 @@ a = a.replace(new RegExp(c + "\\." + i,"g"),"\"" + colors[i] + "\"");
   }
       
   }
-    var g = i + " = function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
-  eval("functions." + g)
-  eval("send." + g)
+    var g = "function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
+  eval("functions."+ i + "=" + g)
+  send[i] = g
 }
 var b = JSON.parse(require('fs').readFileSync(__dirname + "/styles.json"))
 for (var i in b) {
