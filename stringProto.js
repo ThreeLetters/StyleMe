@@ -30,7 +30,7 @@ function check(a) {
 }
 
 for (var i in spec) {
-eval("String.prototype." + i " = " + spec[i])
+eval("String.prototype." + i + " = " + spec[i])
 }
 for (var i in colors) {
   var a = colors[i];
