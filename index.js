@@ -14,7 +14,7 @@ var functions = {
     return extend(send,colors)
     
   },
-  addThemes: function(theme) {
+  addTheme: function(theme) {
     if (typeof theme == "string") {
       theme = require(theme)
     }
@@ -33,13 +33,13 @@ var functions = {
       if (!a.type || !a.name || !a.data) continue;
       switch (a.type) {
           case "theme":
-          
+          this.addTheme(a.data);
           break;
           case "special":
-            
+          this.addSpecial(a.name,a.data);
           break;
           case "style":
-              
+          this.addStyle(a.name,a.data)
           break;
       }
     }
