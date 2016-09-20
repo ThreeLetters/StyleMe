@@ -13,8 +13,32 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function() {
-  var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
+
+  var list = JSON.parse(require('fs').readFileSync(__dirname + '/list.json',"utf8"))
+  var special = {
+  abc: function(a,i) {
+      switch(i % 3) {
+          case 0:
+              return "\x1b[31m" + a;
+              break;
+          case 1:
+              return "\x1b[37m" + a;
+              break;
+          case 2:
+              return "\x1b[34m" + a;
+              break;
+              
+      }
+      return a;
+  }
+  
+  }
+  var curr = false;
+  function checkSpecial(a) {
+      if (!special[a]) return false;
+      curr = special[a];
+      return true;
+  }
 function check(a) {
     if (!list[a]) return false
     
@@ -33,12 +57,31 @@ String.prototype.end = function() {
 String.prototype.styleMe = function() {
 var t = 0;
     var k = []
+    var o = 0;
     var thi = this;
     var result = "";
     var index = 0;
-    for (var i = 0; i < this.length; i ++) {
+    for (var i = 0; i < 100; i ++) {
+         var h = thi.indexOf("}",index) 
+         var a = thi.charAt(i)
+        if (curr && a != "}") {
+        
+           
+            var g = curr(a,o);
+       
+            o++;
+            thi = thi.substring(0,i) + g + thi.substr(i+1);
+            i += g.length - a.length
+            continue;
+        } else if (a == "}") {
+            t--;
+            curr = false;
+            thi = thi.substring(0,i) + "\x1b[0m"+ thi.substr(i+1);
+            continue;
+        }
+        
       var a = thi.indexOf("{",index);
-       var h = thi.indexOf("}",index) 
+      
        
        if ((h != -1 && h < a) || (a == -1 && h != -1)) {
        if (t == 0) throw "SYTAX ERROR";
@@ -59,6 +102,13 @@ var t = 0;
             
         k[t] = j
         t++;
+        } else if (checkSpecial(c)) {
+            i = a - 4;
+           
+            o = 0;
+              thi = thi.substring(0,a-3) + thi.substring(a + 1);
+            
+            t++;
         } else {
             index = a + 1;
         }
@@ -67,4 +117,6 @@ var t = 0;
     
     return thi + "\x1b[0m";
   }
-}
+
+
+console.log("abc{fbcdefghi}efe".styleMe())
