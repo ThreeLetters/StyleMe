@@ -10,12 +10,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function(str,style,colors) {
+module.exports = function(str,style,colors,themes) {
   if (!style) throw "Style not specified";
   var styles = style.split(",")
   var final = "";
   styles.forEach((sty)=>{
-    eval("var a = \"" + colors[sty] + "\"");
+   var b = "";
+   if (colors[sty]) b = colors[sty];
+   if (themes[sty]){
+    var c = themes[sty].split(",")
+    for (var j = 0;j < c.length;j ++) {
+     b += colors[c[j]]
+    }
+    }
+   
+    eval("var a = \"" + b + "\"");
     final += a
     
   })
