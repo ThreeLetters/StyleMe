@@ -31,8 +31,8 @@ a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k] + "\"");
   
   } 
   }
-    var g = "function(a) {function cur(" + a +"var final = \"\";for (var i = 0; i < a.length; i ++) { final += cur(a.charAt(i),i);}return final + \"\x1b[0m\"}";
-  eval("functions."+ i + "=" + g)
+    var g = "function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
+  eval("functions."+ i + "= function(a) {function cur(" + a +"var final = \"\";for (var i = 0; i < a.length; i ++) { final += cur(a.charAt(i),i);}return final + \"\x1b[0m\"}")
   send[i] = g
 }
 
