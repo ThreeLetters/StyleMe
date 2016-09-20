@@ -30,4 +30,4 @@ for (var i in b) {
   
 }
 
-
+module.exports = functions
