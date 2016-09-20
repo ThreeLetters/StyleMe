@@ -3,7 +3,7 @@ var extend = require('./stringProto')
 var send = {};
   var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
   var colors = {};
-  
+  var themes = {}
   var extended = false;
 var functions = {
   style: function(a,b) {
@@ -14,6 +14,12 @@ var functions = {
     return extend(send,colors)
     
   },
+  addThemes: function(theme,callback) {
+    for (var i in theme) {
+      themes[i] = theme[i];
+    }
+    
+  }
   addSpecial: function(name,func) {
     if (name.length > 3) throw "Code cannot be over 3 chars"
     if (typeof func != "function") throw "Special patterns must be a function";
