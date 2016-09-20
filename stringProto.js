@@ -43,8 +43,10 @@ for (var i in special) {
   var b = a.indexOf("(")
   a = a.substring(b);
   var c = a.substring(0,a.indexOf(")")).split(",")[2];
+  if (c) {
   for (var i in colors) {
 a = a.replace(new RegExp("/" + c + "\\." + i + "/g"),"\"" + colors[i] + "\"");
+  }
   }
   eval("String.prototype." + i + "=function() {function cur(" + a +"var final = "";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i)}return final;}")
 }
