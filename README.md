@@ -75,6 +75,17 @@ All of these methods use color codes. They have 3 letters.
 |bgWhite    |bwh |
 
 
+Special Codes
+
+
+|Style      |Code|
+|:----------|:--:|
+|American   |ame |
+|Rainbow    |rai |
+|Random     |ran |
+
+
+
 ### Adding Colors
 
 You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|"
