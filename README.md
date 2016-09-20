@@ -89,3 +89,21 @@ Special Codes
 ### Adding Colors
 
 You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|"
+
+
+### Adding Special Styles
+
+You can add your own special style by adding them in the /special folder. Remember to include it in special/index.js
+
+```
+module.exports = function(char,index,colors) { // colors => a object where you can get colors without using ansi codes
+switch(index%2) { // Black and white inverse pattern
+ case 0:
+ return colors.bwh + colors.bla + char;
+ break;
+ case 1:
+ return colors.bbl + colors.whi + char
+ break;
+}
+}
+```
