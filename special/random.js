@@ -1,5 +1,5 @@
 module.exports = function(a,i,colors) {
-var color = {
+var color = [
   colors.red,
   colors.gre,
   colors.blu,
