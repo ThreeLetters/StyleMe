@@ -1,19 +1,19 @@
 module.exports = function(l,i,colors) {
   switch (i%5) {
     case 0:
-    return "\x1b[31m" + l
+    return colors.red + l
     break;
     case 1:
-      return "\x1b[33m" + l
+      return colors.yel + l
     break;
     case 2:
-      return "\x1b[32m" + l
+      return colors.gre + l
     break;
     case 3:
-      return "\x1b[34m" + l
+      return colors.blu + l
     break;
     case 4:
-      return "\x1b[35m" + l
+      return colors.mag + l
     break;
   }
   
