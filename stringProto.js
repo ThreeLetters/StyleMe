@@ -15,6 +15,13 @@
    */
 
   var list = JSON.parse(require('fs').readFileSync(__dirname + '/list.json',"utf8"))
+  var colors = {};
+  for (var i in list)
+  {
+    eval("colors." + i + " = \"" + list[i].replace(/\|/g,"\\") + "\"")
+    
+  }
+  
   var special = require('./special/')
   var curr = false;
   function checkSpecial(a) {
@@ -50,7 +57,7 @@ var t = 0;
         if (curr && a != "}") {
         
            
-            var g = curr(a,o);
+            var g = curr(a,o,colors);
        
             o++;
             thi = thi.substring(0,i) + g + thi.substr(i+1);
