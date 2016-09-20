@@ -32,19 +32,17 @@ module.exports = function(spec) {
   }
 function check(a) {
     if (!list[a]) return false
-    
-    eval("var g = \""  + list[a].replace(/\|/g,"\\") + "\"")
-   
+   var g = colors[a]
     return g;
 }
 
 for (var i in spec) {
 eval("String.prototype." + i " = " + spec[i])
 }
-for (var i in list) {
-  var a = list[i];
+for (var i in colors) {
+  var a = colors[i];
     if (!a) continue;
-  eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\" + this;}");
+  eval("String.prototype." + i + "=function(){return \"" + a +"\" + this;}");
   
 }
 String.prototype.end = function() {
