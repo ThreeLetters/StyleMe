@@ -15,24 +15,7 @@
    */
 
   var list = JSON.parse(require('fs').readFileSync(__dirname + '/list.json',"utf8"))
-  var special = {
-  abc: function(a,i) {
-      switch(i % 3) {
-          case 0:
-              return "\x1b[31m" + a;
-              break;
-          case 1:
-              return "\x1b[37m" + a;
-              break;
-          case 2:
-              return "\x1b[34m" + a;
-              break;
-              
-      }
-      return a;
-  }
-  
-  }
+  var special = require('./special/')
   var curr = false;
   function checkSpecial(a) {
       if (!special[a]) return false;
