@@ -13,8 +13,8 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-
-  var list = JSON.parse(require('fs').readFileSync(__dirname + '/list.json',"utf8"))
+module.exports = function() {
+  var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
   var colors = {};
   for (var i in list)
   {
@@ -40,15 +40,20 @@ function check(a) {
 
 for (var i in special) {
   var a = special[i].toString();
-  var b = a.indexOf("(")
+  var b = a.indexOf("(") + 1
   a = a.substring(b);
-  var c = a.substring(0,a.indexOf(")")).split(",")[2];
+  var c = a.substring(0,a.indexOf(")")).split(",");
+    c = c[2]
+    
   if (c) {
   for (var i in colors) {
-a = a.replace(new RegExp("/" + c + "\\." + i + "/g"),"\"" + colors[i] + "\"");
+      if (a.indexOf(c + "." + i) == -1) continue;
+a = a.replace(new RegExp(c + "\\." + i,"g"),"\"" + colors[i] + "\"");
   }
+      
   }
-  eval("String.prototype." + i + "=function() {function cur(" + a +"var final = "";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i)}return final;}")
+    var g = "String.prototype." + i + " = function() {function cur(" + a +"var final = \"\";for (var i = 0; i < this.length; i ++) { final += cur(this.charAt(i),i);}return final + \"\x1b[0m\"}";
+  eval(g)
 }
 for (var i in list) {
   var a = list[i];
@@ -121,7 +126,6 @@ var t = 0;
     }
     
     return thi + "\x1b[0m";
-  }
+}
+}
 
-
-console.log("abc{fbcdefghi}efe".styleMe())
