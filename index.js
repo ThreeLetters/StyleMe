@@ -30,7 +30,18 @@ var functions = {
     }
     for (var i = 0; i < data.length; i ++) {
       var a = data[i];
-      
+      if (!a.type || !a.name || !a.data) continue;
+      switch (a.type) {
+          case "theme":
+          
+          break;
+          case "special":
+            
+          break;
+          case "style":
+              
+          break;
+      }
     }
   },
   addSpecial: function(name,func) {
