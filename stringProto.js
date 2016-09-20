@@ -24,7 +24,7 @@ module.exports = function(spec,colors) {
       return true;
   }
 function check(a) {
-    if (!list[a]) return false
+    if (!colors[a]) return false
    var g = colors[a]
     return g;
 }
