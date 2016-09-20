@@ -36,10 +36,16 @@ function check(a) {
    
     return g;
 }
+
+for (var i in special) {
+  var a = special[i];
+  eval("String.prototype." + i + "=function() {var final = "";for (var i = 0; i < this.length; i ++) {}}")
+}
 for (var i in list) {
   var a = list[i];
     if (!a) continue;
-  eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\" + this;}")
+  eval("String.prototype." + i + "=function(){return \"" + a.replace(/\|/g,"\\") +"\" + this;}");
+  
 }
 String.prototype.end = function() {
   return this + "\x1b[0m";
