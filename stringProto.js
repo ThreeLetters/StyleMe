@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function(spec,colors) {
+module.exports = function(spec,colors,themes) {
 
   
   var special = require('./special/')
@@ -37,6 +37,10 @@ for (var i in colors) {
     if (!a) continue;
   eval("String.prototype." + i + "=function(){return \"" + a +"\" + this;}");
   
+}
+for (var i in themes) {
+  var theme = themes[i];
+  eval("String.prototype." + i "=function() { var final = this;var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = final[th[i]];if (g) final = g()}return final}")
 }
 String.prototype.end = function() {
   return this + "\x1b[0m";
