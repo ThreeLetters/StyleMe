@@ -88,7 +88,7 @@ a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k] + "\"");
 }
 for (var i in themes) {
   var theme = themes[i];
-  eval("functions." + i "=function(a) {var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = this[th[i]];if (g) a = g(a)}return a}")
+  eval("functions." + i + "=function(a) {var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = this[th[i]];if (g) a = g(a)}return a}")
 }
 for (var i in colors) {
   var h = colors[i];
@@ -96,7 +96,7 @@ for (var i in colors) {
   eval("functions." + i + "=function(a){return \"" + h +"\" + a;}");
   
 }
-  if (extended) extend(send,colors)
+  if (extended) extend(send,colors,themes)
 }
 
 module.exports = functions
