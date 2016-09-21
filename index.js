@@ -86,7 +86,10 @@ a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k] + "\"");
   eval("functions."+ i + "= function(a) {function cur(" + a +"var final = \"\";for (var i = 0; i < a.length; i ++) { final += cur(a.charAt(i),i);}return final + \"\x1b[0m\"}")
   send[i] = g
 }
-
+for (var i in themes) {
+  var theme = themes[i];
+  eval("functions." + i "=function(a) {var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = this[th[i]];if (g) a = g(a)}return a}")
+}
 for (var i in colors) {
   var h = colors[i];
     if (!h) continue;
