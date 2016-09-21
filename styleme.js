@@ -10,7 +10,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
    */
-module.exports = function(str,style,colors,themes) {
+module.exports = function(str,style,colors,themes,special) {
   if (!style) throw "Style not specified";
   var styles = style.split(",")
   var final = "";
@@ -18,14 +18,29 @@ module.exports = function(str,style,colors,themes) {
    var b = "";
    if (colors[sty]) b = colors[sty];
    if (themes[sty]){
+    var b = "";
     var c = themes[sty].split(",")
     for (var j = 0;j < c.length;j ++) {
+     if (special[c[j]]) {
+       var t = str;
+     str = "";
+     for (var i = 0; i < t.length; i ++) {
+      str += special[sty](t.charAt(i),i);
+      
+     }
+      continue;
+     }
      b += colors[c[j]]
     }
+    } else if (special[sty]) {
+     var t = str;
+     str = "";
+     for (var i = 0; i < t.length; i ++) {
+      str += special[sty](t.charAt(i),i);
+      
+     }
     }
-   
-    eval("var a = \"" + b + "\"");
-    final += a
+    final += b
     
   })
   final += str + "\x1b[0m"
