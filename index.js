@@ -88,12 +88,12 @@ a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k] + "\"");
 }
 for (var i in themes) {
   var theme = themes[i];
-  eval("functions." + i + "=function(a) {var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = this[th[i]];if (g) a = g(a)}return a}")
+  eval("functions." + i + "=function(a) {var th = \""+ theme +"\".split(\",\");for(var i = 0; i < th.length; i++) {var g = this[th[i]];if (g) a = g(a)}return a + \"\x1b[0m\"}")
 }
 for (var i in colors) {
   var h = colors[i];
     if (!h) continue;
-  eval("functions." + i + "=function(a){return \"" + h +"\" + a;}");
+  eval("functions." + i + "=function(a){return \"" + h +"\" + a + \"\x1b[0m\";}");
   
 }
   if (extended) extend(send,colors,themes,special)
