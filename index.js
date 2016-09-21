@@ -7,7 +7,7 @@ var send = {};
   var extended = false;
 var functions = {
   style: function(a,b) {
-    return styleme(a,b,colors,themes)
+    return styleme(a,b,colors,themes,special)
   },
   extend: function() {
     extended = true;
