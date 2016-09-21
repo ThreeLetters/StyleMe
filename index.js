@@ -11,7 +11,7 @@ var functions = {
   },
   extend: function() {
     extended = true;
-    return extend(send,colors,themes)
+    return extend(send,colors,themes,special)
     
   },
   addTheme: function(theme) {
@@ -96,7 +96,7 @@ for (var i in colors) {
   eval("functions." + i + "=function(a){return \"" + h +"\" + a;}");
   
 }
-  if (extended) extend(send,colors,themes)
+  if (extended) extend(send,colors,themes,special)
 }
 
 module.exports = functions
