@@ -84,6 +84,7 @@ Special Codes
 |American   |ame |
 |Rainbow    |rai |
 |Random     |ran |
+|BlackNWhite|bnw |
 
 
 
