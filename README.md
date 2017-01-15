@@ -1,4 +1,5 @@
-[![NPM] (https://img.shields.io/badge/Module-Npm-blue.svg)] (https://www.npmjs.com/package/styleme) [![Donate] (https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)] (https://paypal.me/andrews54757)
+[![NPM] (https://img.shields.io/badge/Module-Npm-blue.svg)] (https://www.npmjs.com/package/styleme)
+[![Donate] (https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)] (https://paypal.me/andrews54757)
 
 
 # StyleMe
