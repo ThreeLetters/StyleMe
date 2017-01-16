@@ -1,5 +1,5 @@
-var styleme = require('./styleme')
-var extend = require('./stringProto')
+var styleme = require('./lib/styleme')
+var extend = require('./lib/stringProto')
 var send = {};
   var list = JSON.parse(require('fs').readFileSync(__dirname + '/styles.json',"utf8"))
   var colors = {};
