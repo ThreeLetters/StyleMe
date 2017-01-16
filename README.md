@@ -91,11 +91,35 @@ Special Codes
 
 ### Adding Colors
 
-You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|"
+#### StyleMe.addStyle(code,style)
+You can add your own colors using this function. Example: `StyleMe.addStyle("lol","\x1b[5m");`.
+
+#### Styles.json
+
+You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|". 
 
 
 ### Adding Special Styles
 
+#### StyleMe.addSpecial(code,function)
+You can add your own special styles using this function. Example: 
+
+```
+StyleMe.addStyle("bnw",function(char,index,colors) { // colors => a object where you can get colors without using ansi codes
+switch(index%2) { // Black and white inverse pattern
+ case 0:
+ return colors.bwh + colors.bla + char;
+ break;
+ case 1:
+ return colors.bbl + colors.whi + char
+ break;
+}
+});
+```
+
+Please note that you cannot use `colors[index]`. You must use `colors.colorcode` instead
+
+#### /special/ folder
 You can add your own special style by adding them in the /special folder. Remember to include it in special/index.js
 
 ```
@@ -111,5 +135,42 @@ switch(index%2) { // Black and white inverse pattern
 }
 ```
 
-
 Please note that you cannot use `colors[index]`. You must use `colors.colorcode` instead
+
+### Adding Themes
+Themes allow you to use multiple colors at the same time using one code.
+
+> StyleMe.addTheme({
+> rnb: "red,bbl", // red and blue backround
+> })
+
+Please note that themes do not work with String.styleMe().
+
+### Adding add-ons
+Add ons allow you to quickly add multiple themes/colors/special styles
+
+```
+StyleMe.addAddOn([
+{
+type: "style",
+name: "bli", // blink
+data: "\x1b[5"
+},
+{
+type: "special",
+name: "gny", // green and yellow
+data: function(char,index,colors) {
+switch(index%2) { // Green and Yellow inverse pattern
+ case 0:
+ return colors.gre + colors.yel + char;
+ break;
+ case 1:
+ return colors.yel + colors.gre + char
+ break;
+}
+}
+}
+
+])
+
+```
