@@ -77,6 +77,7 @@ for (var i in special) {
     c = c[2]
     
   if (c) {
+    c = c.replace(/\s/g,"");
   for (var k in colors) {
       if (a.indexOf(c + "." + k) == -1) continue;
 a = a.replace(new RegExp(c + "\\." + k,"g"),"\"" + colors[k] + "\"");
