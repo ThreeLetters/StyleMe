@@ -54,8 +54,9 @@ var functions = {
     update()
   },
   addStyle: function(name,style) {
-    if (name.length > 3) throw "Code cannot be over 3 chars"
-    colors[name] = style
+    if (name.length > 3) throw "Code cannot be over 3 chars";
+    if (typeof style == "object") style = "\x1B[38;2;" + style.r + ";" + style.g + ";" + style.b + "m";
+    colors[name] = style;
     update()
   },
 }
