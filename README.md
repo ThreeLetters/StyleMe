@@ -87,6 +87,7 @@ Special Codes
 |Rainbow    |rai |
 |Random     |ran |
 |BlackNWhite|bnw |
+|Clearscreen|cle |
 
 
 
