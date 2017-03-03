@@ -2,7 +2,8 @@
 [![NPM](https://img.shields.io/badge/Module-Npm-blue.svg)](https://www.npmjs.com/package/styleme)
 [![Donate](https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)](https://paypal.me/andrews54757)
 
-# StyleMe
+![styleme](https://cloud.githubusercontent.com/assets/13282284/23569202/21750ba8-002c-11e7-90cf-5ad251c81f85.png)
+
 Print to the console in style.
 
 
