@@ -21,5 +21,6 @@
     "bbl": "|x1b[44m",
     "bma": "|x1b[45m",
     "bcy": "|x1b[46m",
-    "bwh": "|x1b[47m"
+    "bwh": "|x1b[47m",
+    "cle": "|x1b[2J"
 }
