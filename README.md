@@ -1,178 +1,335 @@
-
 [![NPM](https://img.shields.io/badge/Module-Npm-blue.svg)](https://www.npmjs.com/package/styleme)
-[![Donate](https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)](https://paypal.me/andrews54757)
-
 ![styleme](https://cloud.githubusercontent.com/assets/13282284/23569635/392200ec-002e-11e7-9fd8-28ba768fcca4.png)
 
 Print to the console in style.
 
-
 ## Installation
-> npm install styleme
+
+> npm install styleme@3
 
 ## Usage
 
-``var styleme = require('styleme')``
+```js
+const StyleMe = require('styleme')
 
-
-To use methods 2 and 4 also do
-
-
-``styleme.extend()``
-
+// It is recommended to extend the `String` prototype methods for convenience.
+StyleMe.extend()
+```
 
 There are four methods to use this module
 
+### 1. Chaining properties/methods
 
-#### Method 1. The old way
-```
-console.log(styleme.red("a string"))
-console.log(styleme.blu("another string"))
-console.log(styleme.end());
-```
-
-#### Method 2. The "Normal" way
-
-```
-console.log("Hello, this is yellow text".yellow().end()) // note that we dont use Object.__defineGetter__ which is deprecated unlike the popular colors module. Also note putting a .end() at the end to reset
+```js
+console.log(StyleMe.red("a string"))
+console.log(StyleMe.red.bgBlue("another string"))
 ```
 
-#### Method 3. The nifty way
+### 2. The StyleMe Method
 
-```
-console.log(styleme.style("some text","red,bbl")) // red text with blue backround
-```
-
-#### Method 4. The really cool way
-
-```
-console.log("This is normal red{this is red blu{this is blue} back to red}".styleMe())
+```js
+console.log(StyleMe.styleMe("some text","red,bgBlue")) // red text with blue background
+console.log(StyleMe.styleMe("same text",["red", "bgBlue"])) // also red text with blue background
 ```
 
-### Color Codes
-All of these methods use color codes. They have 3 letters.
+### 3. The Inline StyleMe Method
 
-|   Color   |Code|
-|:----------|:--:|
-|Reset      |res |
-|Bright     |bri |
-|Dim        |dim |
-|Underline  |und |
-|Blink      |bli |
-|Reverse    |rev |
-|Hide       |hid |
-|Black      |bla |
-|Red        |red |
-|Green      |gre |
-|Yellow     |yel |
-|Blue       |blu |
-|Magenta    |mag |
-|Cyan       |cya |
-|White      |whi |
-|bgBlack    |bbl |
-|bgRed      |bre |
-|bgGreen    |bgr |
-|bgYellow   |bye |
-|bgMagenta  |bma |
-|bgCyan     |bcy |
-|bgWhite    |bwh |
-
-
-Special Codes
-
-
-|Style      |Code|
-|:----------|:--:|
-|American   |ame |
-|Rainbow    |rai |
-|Random     |ran |
-|BlackNWhite|bnw |
-|Clearscreen|cle |
-
-
-
-### Adding Colors
-
-#### StyleMe.addStyle(code,style)
-You can add your own colors using this function. Example: `StyleMe.addStyle("lol","\x1b[5m");`.
-
-#### Styles.json
-
-You can add your own colors and styles in styles.json. Remember to replace the "\\" with "|". 
-
-
-### Adding Special Styles
-
-#### StyleMe.addSpecial(code,function)
-You can add your own special styles using this function. Example: 
-
+```js
+console.log(StyleMe.styleMe("This is normal [red]{this is red [blue]{this is blue} back to red}"))
+console.log(StyleMe.styleMe("[blue,bgRed]{This is blue with a red background}"))
 ```
-StyleMe.addStyle("bnw",function(char,index,colors) { // colors => a object where you can get colors without using ansi codes
-switch(index%2) { // Black and white inverse pattern
- case 0:
- return colors.bwh + colors.bla + char;
- break;
- case 1:
- return colors.bbl + colors.whi + char
- break;
-}
+
+### 4. `String.prototype` extensions
+
+```js
+// Chaining
+console.log("a string".red())
+console.log("another string".red().bgBlue())
+
+// StyleMe
+console.log("some text".styleMe("red,bgBlue"))
+
+// Inline StyleMe
+console.log("This is normal [red]{this is red [blue]{this is blue} back to red}".styleMe())
+```
+
+## Color Codes
+
+These color codes are available for use:
+
+| Color Code    |
+| :------------ |
+| reset         |
+| bright        |
+| dim           |
+| underline     |
+| strikethrough |
+| blink         |
+| reverse       |
+| hidden        |
+| black         |
+| red           |
+| green         |
+| yellow        |
+| blue          |
+| magenta       |
+| cyan          |
+| white         |
+| bgBlack       |
+| bgRed         |
+| bgGreen       |
+| bgYellow      |
+| bgBlue        |
+| bgMagenta     |
+| bgCyan        |
+| bgWhite       |
+| clear         |
+
+Special Codes (from [Colors.js](https://github.com/Marak/colors.js)) are also supported
+
+| Stye Code   |
+| :---------- |
+| america     |
+| rainbow     |
+| random      |
+| blacknwhite |
+
+## Adding Colors
+
+### StyleMe.addStyle(code, style)
+
+You can add your own colors using this function. Example:
+
+```js
+StyleMe.addStyle("lol","\x1b[5m");
+```
+
+## Adding Special Styles
+
+### StyleMe.addSpecial(code,function)
+
+You can add your own special styles using this function. Example:
+
+```js
+StyleMe.addStyle("rednblue", (char, index, colors) => { // colors => a object where you can get colors without using ansi codes
+    switch (index % 2) { // Red and blue inverse pattern
+        case 0:
+            return colors.bgBlue + colors.red + char;
+        case 1:
+            return colors.bgRed + colors.blue + char
+    }
 });
 ```
 
 Please note that you cannot use `colors[index]`. You must use `colors.colorcode` instead
 
-#### /special/ folder
-You can add your own special style by adding them in the /special folder. Remember to include it in special/index.js
+## Adding Themes
 
+Themes allow you to use multiple colors/aliases at the same.
+
+```js
+// Set the theme
+StyleMe.setTheme({
+    rnb: ["red", "bgBlue"], // red and blue background
+    ynr: ["yellow", "bgMagenta"], // yellow and magenta background
+})
+
+// Can use it now!
+console.log(StyleMe.rnb("test"))
 ```
-module.exports = function(char,index,colors) { // colors => a object where you can get colors without using ansi codes
-switch(index%2) { // Black and white inverse pattern
- case 0:
- return colors.bwh + colors.bla + char;
- break;
- case 1:
- return colors.bbl + colors.whi + char
- break;
-}
-}
-```
 
-Please note that you cannot use `colors[index]`. You must use `colors.colorcode` instead
+# API
 
-### Adding Themes
-Themes allow you to use multiple colors at the same time using one code.
+<!-- Generated by documentation.js. Update this documentation by updating the source code. -->
 
-> StyleMe.addTheme({
-> rnb: "red,bbl", // red and blue backround
-> })
+### Table of Contents
 
-Please note that themes do not work with String.styleMe().
+- [API](#api)
+    - [Table of Contents](#table-of-contents)
+  - [StyleMe](#styleme)
+    - [style](#style)
+      - [Parameters](#parameters)
+    - [styleMe](#styleme-1)
+      - [Parameters](#parameters-1)
+    - [addStyle](#addstyle)
+      - [Parameters](#parameters-2)
+    - [setTheme](#settheme)
+      - [Parameters](#parameters-3)
+  - [code](#code)
+  - [styleMe](#styleme-2)
+    - [Parameters](#parameters-4)
+  - [styleCode](#stylecode)
+  - [SpecialStyleFn](#specialstylefn)
+    - [Parameters](#parameters-5)
+  - [recursiveProxy](#recursiveproxy)
+    - [Parameters](#parameters-6)
+  - [Styles](#styles)
 
-### Adding add-ons
-Add ons allow you to quickly add multiple themes/colors/special styles
+## StyleMe
 
-```
-StyleMe.addAddOn([
-{
-type: "style",
-name: "bli", // blink
-data: "\x1b[5"
-},
-{
-type: "special",
-name: "gny", // green and yellow
-data: function(char,index,colors) {
-switch(index%2) { // Green and Yellow inverse pattern
- case 0:
- return colors.gre + colors.yel + char;
- break;
- case 1:
- return colors.yel + colors.gre + char
- break;
-}
-}
-}
+[src/StyleMe.js:10-303](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L10-L303 "Source code on GitHub")
 
-])
+StyleMe
 
-```
+Static class that is used to easily add colors to console outputs.
+
+### style
+
+[src/StyleMe.js:19-53](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L19-L53 "Source code on GitHub")
+
+Styles the given string according to the given style codes.
+
+#### Parameters
+
+*   `str` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** String to style
+*   `styleCodes` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** Comma seperated list (or array) of style codes.
+
+<!---->
+
+*   Throws **any** Will throw error if an invalid style code is provided.
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Styled output
+
+### styleInline
+
+[src/StyleMe.js:62-177](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L62-L177 "Source code on GitHub")
+
+Styles a string with inline style markers
+
+#### Parameters
+
+*   `str` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** String to style with inline style markers
+
+<!---->
+
+*   Throws **any** Will give error if braces are mismatched.
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Returns the styled string
+
+### styleMe
+
+[src/StyleMe.js:187-193](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L187-L193 "Source code on GitHub")
+
+Styles the given string according to the given style codes if given and uses inline style markers otherwise.
+
+#### Parameters
+
+*   `str` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** String to style
+*   `styleCodes` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))?** Optional comma seperated list (or array) of style codes.
+
+<!---->
+
+*   Throws **any** Will throw error if an invalid style code is provided or if braces are mismatched.
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Styled output
+
+### extend
+
+[src/StyleMe.js:198-223](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L198-L223 "Source code on GitHub")
+
+Extends String.prototype with helper methods that can be used to easily style a string
+
+### flattenStyle
+
+[src/StyleMe.js:232-256](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L232-L256 "Source code on GitHub")
+
+Flattens an array style into a single array
+
+#### Parameters
+
+*   `style` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function))** 
+*   `arr` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)?** 
+
+<!---->
+
+*   Throws **any** Error if style code not found or if invalid
+
+Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** Flattened array
+
+### addStyle
+
+[src/StyleMe.js:272-292](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L272-L292 "Source code on GitHub")
+
+Adds a style
+
+#### Parameters
+
+*   `styleCode` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** style code string (alphabetical string, no spaces)
+*   `style` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [SpecialStyleFn](#specialstylefn))** Style string or function
+
+### setTheme
+
+[src/StyleMe.js:298-302](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L298-L302 "Source code on GitHub")
+
+Sets a theme
+
+#### Parameters
+
+*   `theme` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+
+## code
+
+[src/StyleMe.js:207-209](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L207-L209 "Source code on GitHub")
+
+Styles the string according to the method's code
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## styleMe
+
+[src/StyleMe.js:220-222](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L220-L222 "Source code on GitHub")
+
+Styles the string according to the given style codes if given and uses inline style markers otherwise.
+
+### Parameters
+
+*   `styleCodes` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))?** 
+
+<!---->
+
+*   Throws **any** Will throw error if an invalid style code is provided or if braces are mismatched.
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Styled string
+
+## styleCode
+
+[src/StyleMe.js:288-290](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L288-L290 "Source code on GitHub")
+
+Styles the string according to the method's code
+
+Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+
+## SpecialStyleFn
+
+[src/StyleMe.js:272-292](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L258-L265 "Source code on GitHub")
+
+A function that adds styling to individual characters
+
+Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
+
+### Parameters
+
+*   `char` **char** Character involved
+*   `index` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Index of the character
+*   `styles` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object containing the styles as properties.
+
+Returns **any** Should return the styled character.
+
+## recursiveProxy
+
+[src/StyleMe.js:311-328](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L311-L328 "Source code on GitHub")
+
+Wraps objects with a Proxy for code chaining
+
+### Parameters
+
+*   `target` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+*   `styles` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** 
+
+## Styles
+
+[styles/Styles.js:6-36](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/styles/Styles.js#L6-L36 "Source code on GitHub")
+
+The colors/styles defined. ASCII codes reference: <https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797>
+
+Can be a string or function.
