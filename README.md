@@ -144,30 +144,33 @@ console.log(StyleMe.rnb("test"))
 
 ### Table of Contents
 
-- [API](#api)
-    - [Table of Contents](#table-of-contents)
-  - [StyleMe](#styleme)
-    - [style](#style)
-      - [Parameters](#parameters)
-    - [styleMe](#styleme-1)
-      - [Parameters](#parameters-1)
-    - [addStyle](#addstyle)
-      - [Parameters](#parameters-2)
-    - [setTheme](#settheme)
-      - [Parameters](#parameters-3)
-  - [code](#code)
-  - [styleMe](#styleme-2)
-    - [Parameters](#parameters-4)
-  - [styleCode](#stylecode)
-  - [SpecialStyleFn](#specialstylefn)
-    - [Parameters](#parameters-5)
-  - [recursiveProxy](#recursiveproxy)
-    - [Parameters](#parameters-6)
-  - [Styles](#styles)
+*   [StyleMe](#styleme)
+    *   [style](#style)
+        *   [Parameters](#parameters)
+    *   [styleInline](#styleinline)
+        *   [Parameters](#parameters-1)
+    *   [styleMe](#styleme-1)
+        *   [Parameters](#parameters-2)
+    *   [extend](#extend)
+    *   [flattenStyle](#flattenstyle)
+        *   [Parameters](#parameters-3)
+    *   [addStyle](#addstyle)
+        *   [Parameters](#parameters-4)
+    *   [setTheme](#settheme)
+        *   [Parameters](#parameters-5)
+*   [code](#code)
+*   [styleMe](#styleme-2)
+    *   [Parameters](#parameters-6)
+*   [styleCode](#stylecode)
+*   [SpecialStyleFn](#specialstylefn)
+    *   [Parameters](#parameters-7)
+*   [recursiveProxy](#recursiveproxy)
+    *   [Parameters](#parameters-8)
+*   [Styles](#styles)
 
 ## StyleMe
 
-[src/StyleMe.js:10-303](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L10-L303 "Source code on GitHub")
+[src/StyleMe.js:10-303](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L10-L303 "Source code on GitHub")
 
 StyleMe
 
@@ -175,7 +178,7 @@ Static class that is used to easily add colors to console outputs.
 
 ### style
 
-[src/StyleMe.js:19-53](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L19-L53 "Source code on GitHub")
+[src/StyleMe.js:19-53](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L19-L53 "Source code on GitHub")
 
 Styles the given string according to the given style codes.
 
@@ -192,7 +195,7 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### styleInline
 
-[src/StyleMe.js:62-177](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L62-L177 "Source code on GitHub")
+[src/StyleMe.js:62-177](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L62-L177 "Source code on GitHub")
 
 Styles a string with inline style markers
 
@@ -208,7 +211,7 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### styleMe
 
-[src/StyleMe.js:187-193](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L187-L193 "Source code on GitHub")
+[src/StyleMe.js:187-193](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L187-L193 "Source code on GitHub")
 
 Styles the given string according to the given style codes if given and uses inline style markers otherwise.
 
@@ -225,13 +228,13 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ### extend
 
-[src/StyleMe.js:198-223](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L198-L223 "Source code on GitHub")
+[src/StyleMe.js:198-223](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L198-L223 "Source code on GitHub")
 
 Extends String.prototype with helper methods that can be used to easily style a string
 
 ### flattenStyle
 
-[src/StyleMe.js:232-256](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L232-L256 "Source code on GitHub")
+[src/StyleMe.js:232-256](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L232-L256 "Source code on GitHub")
 
 Flattens an array style into a single array
 
@@ -248,7 +251,7 @@ Returns **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 
 ### addStyle
 
-[src/StyleMe.js:272-292](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L272-L292 "Source code on GitHub")
+[src/StyleMe.js:272-292](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L272-L292 "Source code on GitHub")
 
 Adds a style
 
@@ -259,7 +262,7 @@ Adds a style
 
 ### setTheme
 
-[src/StyleMe.js:298-302](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L298-L302 "Source code on GitHub")
+[src/StyleMe.js:298-302](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L298-L302 "Source code on GitHub")
 
 Sets a theme
 
@@ -269,7 +272,7 @@ Sets a theme
 
 ## code
 
-[src/StyleMe.js:207-209](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L207-L209 "Source code on GitHub")
+[src/StyleMe.js:207-209](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L207-L209 "Source code on GitHub")
 
 Styles the string according to the method's code
 
@@ -277,7 +280,7 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## styleMe
 
-[src/StyleMe.js:220-222](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L220-L222 "Source code on GitHub")
+[src/StyleMe.js:220-222](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L220-L222 "Source code on GitHub")
 
 Styles the string according to the given style codes if given and uses inline style markers otherwise.
 
@@ -293,7 +296,7 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## styleCode
 
-[src/StyleMe.js:288-290](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L288-L290 "Source code on GitHub")
+[src/StyleMe.js:288-290](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L288-L290 "Source code on GitHub")
 
 Styles the string according to the method's code
 
@@ -301,7 +304,7 @@ Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## SpecialStyleFn
 
-[src/StyleMe.js:272-292](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L258-L265 "Source code on GitHub")
+[src/StyleMe.js:272-292](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L258-L265 "Source code on GitHub")
 
 A function that adds styling to individual characters
 
@@ -317,7 +320,7 @@ Returns **any** Should return the styled character.
 
 ## recursiveProxy
 
-[src/StyleMe.js:311-328](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/src/StyleMe.js#L311-L328 "Source code on GitHub")
+[src/StyleMe.js:311-328](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/src/StyleMe.js#L311-L328 "Source code on GitHub")
 
 Wraps objects with a Proxy for code chaining
 
@@ -328,7 +331,7 @@ Wraps objects with a Proxy for code chaining
 
 ## Styles
 
-[styles/Styles.js:6-36](https://github.com/ThreeLetters/StyleMe/blob/718cd2cd459ab1236ba764500b1f7f4521fdd95a/styles/Styles.js#L6-L36 "Source code on GitHub")
+[styles/Styles.js:6-36](https://andrews54757@github.com/ThreeLetters/StyleMe/blob/c24e7e14a2cb00d2f742a91331117b517c8e0285/styles/Styles.js#L6-L36 "Source code on GitHub")
 
 The colors/styles defined. ASCII codes reference: <https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797>
 
